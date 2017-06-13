@@ -2,6 +2,12 @@
 
 const _ = require('lodash')
 
+const preamble = `
+## Introduction
+These are the help texts for each of the core Heroku CLI commands. You can also see this text in your terminal with \`heroku help \`, \`heroku --help\`, or \`heroku -h\`. If you maintain a CLI plugin, you can generate the Markdown for a page like this by using [this tool](http://github.com/heroku/heroku-plugin-readme-generator)
+
+`
+
 let Setsumeisho = function () {}
 
 Setsumeisho.buildFlag = function (flag) {
@@ -133,6 +139,7 @@ Setsumeisho.build = function (dirs) {
   let groupedCommands = _.groupBy(allCommands, 'topic')
   let lines = []
 
+  lines.push(preamble)
   lines.push('')
   lines.push('Commands')
   lines.push('========')
