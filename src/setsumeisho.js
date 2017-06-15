@@ -22,6 +22,10 @@ const packages = [
 ]
 
 const preamble = `
+---
+title: Heroku CLI Commands
+id: 4088
+
 ## Introduction
 These are the help texts for each of the core Heroku CLI commands. You can also see this text in your terminal with \`heroku help \`, \`heroku --help\`, or \`heroku -h\`. If you maintain a CLI plugin, you can generate the Markdown for a page like this by using [this tool](http://github.com/heroku/heroku-plugin-readme-generator)
 
@@ -143,16 +147,13 @@ Setsumeisho.build = function () {
   let coreCommands = require('cli-engine/lib/commands').commands
   let corePjson = require('cli-engine/package')
   topicObjs.push(require('cli-engine').topic)
-  coreCommands.forEach((c) => { c.homepage = corePjson.homepage })
 
   let allCommands = coreCommands
   for (const dir of packages) {
     let plugin
     const pluginPath = path.join(process.cwd(), 'node_modules', dir)
-    plugin = require(pluginPath)
+    plugin = require(dir)
     topicObjs.push(plugin.topic)
-    let pjson = require(path.join(pluginPath, 'package.json'))
-    plugin.commands.forEach((c) => c.homepage = pjson.homepage)
     allCommands = allCommands.concat(plugin.commands)
   }
   allCommands.forEach((c) => { c.default ? (c.topic = c.default.topic) : _.noop() })
