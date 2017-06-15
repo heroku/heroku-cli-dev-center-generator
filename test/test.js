@@ -12,11 +12,11 @@ describe('.buildCommand', () => {
     const output = Setsumeisho.buildCommand(cmd)
     expect(output).to.contain(`heroku ${cmd.topic}:${cmd.command}`)
   })
-  it('returns an informational message when there are no flags', () => {
-    const cmd = {topic: 'addons'}
-    const output = Setsumeisho.buildCommand(cmd)
-    expect(output).to.contain('This command has no flags')
-  })
+  // it('returns an informational message when there are no flags', () => {
+  //   const cmd = {topic: 'addons'}
+  //   const output = Setsumeisho.buildCommand(cmd)
+  //   expect(output).to.contain('This command has no flags')
+  // })
   it('italicizes the first line/description', () => {
     const desc = 'create an add-on resource'
     const cmd = {topic: 'addons', description: desc}
@@ -37,9 +37,21 @@ describe('.buildCommand', () => {
     expect(firstline).to.match(/^### `heroku addons/)
   })
   it('adds an h4 title before the flags', () => {
-    const cmd = {topic: 'addons', args: [{name: 'computer', optional: true}, {name: 'monitor', optional: false}]}
+    const cmd = {topic: 'addons', flags: [{name: 'computer', optional: true}, {name: 'monitor', optional: false}]}
     const output = Setsumeisho.buildCommand(cmd)
     expect(output).to.contain('#### Flags')
+  })
+  describe('when there are no flags', () => {
+    it('does not add the h4 title for flags', () => {
+      const cmd = {topic: 'addons', args: []}
+      const output = Setsumeisho.buildCommand(cmd)
+      expect(output).to.not.contain('#### Flags')
+    })
+    it('does not say \'there are no flags\'', () => {
+     const cmd = {topic: 'addons', command: 'output'}
+     const output = Setsumeisho.buildCommand(cmd)
+     expect(output).to.not.contain('This command has no flags')
+		})
   })
 })
 

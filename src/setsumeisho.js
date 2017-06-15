@@ -2,6 +2,25 @@
 
 const _ = require('lodash')
 
+const packages = [
+  'heroku-apps',
+  'heroku-certs',
+  'heroku-ci',
+  'heroku-cli-addons',
+  'heroku-cli-oauth',
+  'heroku-container-registry',
+  'heroku-fork',
+  'heroku-git',
+  'heroku-local',
+  'heroku-orgs',
+  'heroku-pg',
+  'heroku-pipelines',
+  'heroku-ps-exec',
+  'heroku-run',
+  'heroku-spaces',
+  'heroku-status'
+]
+
 const preamble = `
 ## Introduction
 These are the help texts for each of the core Heroku CLI commands. You can also see this text in your terminal with \`heroku help \`, \`heroku --help\`, or \`heroku -h\`. If you maintain a CLI plugin, you can generate the Markdown for a page like this by using [this tool](http://github.com/heroku/heroku-plugin-readme-generator)
@@ -52,8 +71,10 @@ Setsumeisho.buildCommand = function (command) {
   Setsumeisho.addAliases(lines, command)
 
   lines.push('')
-  lines.push('#### Flags')
-  Setsumeisho.buildFlags(lines, command)
+  if (command.flags && command.flags.length) {
+    lines.push('#### Flags')
+    Setsumeisho.buildFlags(lines, command)
+  }
 
   if (command.help) {
     lines.push(Setsumeisho.termFormat(command.help))
@@ -116,7 +137,7 @@ Setsumeisho.addAliases = function (lines, command) {
 }
 Setsumeisho.topicLinks = {}
 
-Setsumeisho.build = function (dirs) {
+Setsumeisho.build = function () {
   let path = require('path')
   let topicObjs = []
   let coreCommands = require('cli-engine/lib/commands').commands
@@ -125,9 +146,9 @@ Setsumeisho.build = function (dirs) {
   coreCommands.forEach((c) => { c.homepage = corePjson.homepage })
 
   let allCommands = coreCommands
-  for (const dir of dirs) {
+  for (const dir of packages) {
     let plugin
-    const pluginPath = path.join(process.cwd(), dir)
+    const pluginPath = path.join(process.cwd(), 'node_modules', dir)
     plugin = require(pluginPath)
     topicObjs.push(plugin.topic)
     let pjson = require(path.join(pluginPath, 'package.json'))
