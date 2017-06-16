@@ -16,6 +16,9 @@
     "test": "jest && standard"
   },
   "devDependencies": {
+    "standard": "6.0.8"
+  },
+  "dependencies": {
     "heroku-apps": "^2.4.0",
     "heroku-certs": "^1.1.38",
     "heroku-ci": "^1.8.0",
@@ -32,9 +35,6 @@
     "heroku-run": "^3.4.11",
     "heroku-spaces": "^2.9.2",
     "heroku-status": "^3.0.10",
-    "standard": "6.0.8"
-  },
-  "dependencies": {
     "chai": "^3.5.0",
     "cli-engine": "3.3.5",
     "jest": "19.0.2",
