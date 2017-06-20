@@ -25,7 +25,6 @@ const preamble = `---
 title: Heroku CLI Commands
 id: 4088
 
-
 ## Introduction
 These are the help texts for each of the core Heroku CLI commands. You can also see this text in your terminal with \`heroku help \`, \`heroku --help\`, or \`heroku -h\`. If you maintain a CLI plugin, you can generate the Markdown for a page like this by using [this tool](http://github.com/heroku/heroku-plugin-readme-generator)
 
@@ -34,14 +33,7 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
 let Setsumeisho = function () {}
 
 Setsumeisho.buildFlag = function (flag) {
-  const flagDescription = flag.description || ''
-  if (flag['char'] && flag.name) {
-    return `\`-${flag.char}, --${flag.name}\` ${flagDescription}`
-  } else if (flag.name) {
-    return `\`--${flag.name}\` ${flagDescription}`
-  } else if (flag.char) {
-    return `\`-${flag.char}\` ${flagDescription}`
-  }
+  return `|\`-${flag.char}\`|\`--${flag.name}\`|${flag.description}|`
 }
 
 Setsumeisho.buildCommand = function (command) {
@@ -131,6 +123,15 @@ Setsumeisho.buildFlags = function (lines, command) {
   }
 }
 
+Setsumeisho.flagsTable = function (flags) {
+  let table = ['|Short|Long|Description|']
+  flags = _.sortBy(flags, 'char', 'name')
+  for (let i in flags) {
+    table.push(Setsumeisho.buildFlag(flags[i]))
+  }
+  return table
+}
+
 Setsumeisho.addAliases = function (lines, command) {
   if (command.aliases && command.aliases.length > 0) {
     lines.push('Aliases:')
@@ -142,22 +143,18 @@ Setsumeisho.addAliases = function (lines, command) {
 Setsumeisho.topicLinks = {}
 
 Setsumeisho.build = function () {
-  let path = require('path')
   let topicObjs = []
   let coreCommands = require('cli-engine/lib/commands').commands
-  let corePjson = require('cli-engine/package')
   topicObjs.push(require('cli-engine').topic)
 
   let allCommands = coreCommands
   for (const dir of packages) {
     let plugin
-    const pluginPath = path.join(process.cwd(), 'node_modules', dir)
     plugin = require(dir)
     topicObjs.push(plugin.topic)
     allCommands = allCommands.concat(plugin.commands)
   }
   allCommands.forEach((c) => { c.default ? (c.topic = c.default.topic) : _.noop() })
-  let commands = allCommands.find((c) => { c.topic === 'commands' })
   let groupedCommands = _.groupBy(allCommands, 'topic')
   let lines = []
 
@@ -182,11 +179,9 @@ Setsumeisho.build = function () {
 }
 
 Setsumeisho.skipTopic = function (topic, commands) {
-  if (topic.match(/^_/))
-    return true
+  if (topic.match(/^_/)) return true
 
-  if (commands[topic].length === 0)
-    return true
+  if (commands[topic].length === 0) return true
 
   if (commands[topic][0].default) {
     let hiddenVals = _.uniq(commands[topic].map((c) => c.default.hidden))
@@ -194,13 +189,11 @@ Setsumeisho.skipTopic = function (topic, commands) {
     if (hiddenVals.includes(false)) return false
   } else {
     let unique = _.uniq(commands[topic].map((c) => c.hidden))
-    if (unique.length === 1 && unique[0])
-      return true
+    if (unique.length === 1 && unique[0]) return true
     if (unique.includes(false)) return false
   }
 
-  if (commands[topic].filter((c) => !c.hidden).length === 0)
-    return true
+  if (commands[topic].filter((c) => !c.hidden).length === 0) return true
 
   return false
 }

@@ -48,10 +48,10 @@ describe('.buildCommand', () => {
       expect(output).to.not.contain('#### Flags')
     })
     it('does not say \'there are no flags\'', () => {
-     const cmd = {topic: 'addons', command: 'output'}
-     const output = Setsumeisho.buildCommand(cmd)
-     expect(output).to.not.contain('This command has no flags')
-		})
+      const cmd = {topic: 'addons', command: 'output'}
+      const output = Setsumeisho.buildCommand(cmd)
+      expect(output).to.not.contain('This command has no flags')
+    })
   })
 })
 
@@ -97,22 +97,33 @@ Example:
   })
 })
 describe('.buildFlag', () => {
-  it('combines name, char, and description when they are present', () => {
+  it('returns a markdown table row', () => {
     const flag = {char: 'h', name: 'help', description: 'prints this help message'}
-    let result = Setsumeisho.buildFlag(flag)
-    expect(result).to.equal('`-h, --help` prints this help message')
-  })
-  it('combines the name and description when only they are preset', () => {
-    const flag = {name: 'help', description: 'prints this help message'}
-    let result = Setsumeisho.buildFlag(flag)
-    expect(result).to.equal('`--help` prints this help message')
-  })
-  it('combines only the char and description when only they are present', () => {
-    const flag = {char: 'h', description: 'prints this help message'}
-    let result = Setsumeisho.buildFlag(flag)
-    expect(result).to.equal('`-h` prints this help message')
+    const result = Setsumeisho.buildFlag(flag)
+    expect(result).to.equal(`|\`-${flag.char}\`|\`--${flag.name}\`|${flag.description}|`)
   })
 })
+describe('flagsTable', () => {
+  const flag = {char: 'h', name: 'help', description: 'prints this help message'}
+  it('has a header row', () => {
+    const result = Setsumeisho.flagsTable([flag])
+    expect(result[0]).to.equal(`|Short|Long|Description|`)
+  })
+  it('sorts the flags alphabetically, first by short flag then by long flag', () => {
+    const flags = [
+      {char: 'b', name: 'bananas', description: 'bananas starts with the letter b'},
+      {char: 'h', name: 'help', description: 'prints this help message'},
+      {char: 'a', name: 'ardvarks', description: 'ardvarks are animals'},
+      {char: 'a', name: 'apples', description: 'apples starts with the letter a'}
+    ]
+    const result = Setsumeisho.flagsTable(flags)
+    expect(result[1]).to.contain('apples')
+    expect(result[2]).to.contain('ardvarks')
+    expect(result[3]).to.contain('bananas')
+    expect(result[4]).to.contain('help')
+  })
+})
+
 describe('.skipTopic', () => {
   describe('working with v5 commands', () => {
     it('returns true when there are no commands for that topic', () => {
