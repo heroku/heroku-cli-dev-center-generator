@@ -33,7 +33,10 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
 let Setsumeisho = function () {}
 
 Setsumeisho.buildFlag = function (flag) {
-  return `|\`-${flag.char}\`|\`--${flag.name}\`|${flag.description}|`
+  let char = flag.char ? '`-' + flag.char + '`' : ''
+  let name = flag.name ? '`--' + flag.name + '`' : ''
+  let desc = flag.description ? flag.description : ''
+  return `|${char}|${name}|${desc}|`
 }
 
 Setsumeisho.buildCommand = function (command) {
@@ -69,7 +72,9 @@ Setsumeisho.buildCommand = function (command) {
   lines.push('')
   if (command.flags && command.flags.length) {
     lines.push('#### Flags')
-    Setsumeisho.buildFlags(lines, command)
+    lines.push('')
+    lines = lines.concat(Setsumeisho.flagsTable(command.flags))
+    lines.push('')
   }
 
   if (command.help) {
@@ -124,7 +129,7 @@ Setsumeisho.buildFlags = function (lines, command) {
 }
 
 Setsumeisho.flagsTable = function (flags) {
-  let table = ['|Short|Long|Description|']
+  let table = ['|Short|Long|Description|', '|------|------|------|']
   flags = _.sortBy(flags, 'char', 'name')
   for (let i in flags) {
     table.push(Setsumeisho.buildFlag(flags[i]))

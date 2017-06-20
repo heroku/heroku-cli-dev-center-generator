@@ -12,11 +12,6 @@ describe('.buildCommand', () => {
     const output = Setsumeisho.buildCommand(cmd)
     expect(output).to.contain(`heroku ${cmd.topic}:${cmd.command}`)
   })
-  // it('returns an informational message when there are no flags', () => {
-  //   const cmd = {topic: 'addons'}
-  //   const output = Setsumeisho.buildCommand(cmd)
-  //   expect(output).to.contain('This command has no flags')
-  // })
   it('italicizes the first line/description', () => {
     const desc = 'create an add-on resource'
     const cmd = {topic: 'addons', description: desc}
@@ -102,12 +97,18 @@ describe('.buildFlag', () => {
     const result = Setsumeisho.buildFlag(flag)
     expect(result).to.equal(`|\`-${flag.char}\`|\`--${flag.name}\`|${flag.description}|`)
   })
+  it('fills in a blank space for undefined attributes', () => {
+    const flag = {name: 'help', description: 'prints this help message'}
+    const result = Setsumeisho.buildFlag(flag)
+    expect(result).to.equal(`||\`--${flag.name}\`|${flag.description}|`)
+  })
 })
 describe('flagsTable', () => {
   const flag = {char: 'h', name: 'help', description: 'prints this help message'}
   it('has a header row', () => {
     const result = Setsumeisho.flagsTable([flag])
-    expect(result[0]).to.equal(`|Short|Long|Description|`)
+    expect(result[0]).to.equal('|Short|Long|Description|')
+    expect(result[1]).to.equal('|------|------|------|')
   })
   it('sorts the flags alphabetically, first by short flag then by long flag', () => {
     const flags = [
@@ -117,10 +118,10 @@ describe('flagsTable', () => {
       {char: 'a', name: 'apples', description: 'apples starts with the letter a'}
     ]
     const result = Setsumeisho.flagsTable(flags)
-    expect(result[1]).to.contain('apples')
-    expect(result[2]).to.contain('ardvarks')
-    expect(result[3]).to.contain('bananas')
-    expect(result[4]).to.contain('help')
+    expect(result[2]).to.contain('apples')
+    expect(result[3]).to.contain('ardvarks')
+    expect(result[4]).to.contain('bananas')
+    expect(result[5]).to.contain('help')
   })
 })
 
