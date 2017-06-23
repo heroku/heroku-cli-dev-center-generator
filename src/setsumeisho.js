@@ -8,7 +8,7 @@ const packages = [
   'heroku-ci',
   'heroku-cli-addons',
   'heroku-cli-oauth',
-  'heroku-container-registry',
+//  'heroku-container-registry',
   'heroku-fork',
   'heroku-git',
   'heroku-local',
