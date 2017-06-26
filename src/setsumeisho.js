@@ -18,7 +18,7 @@ const packages = [
   'heroku-ps-exec',
   'heroku-run',
   'heroku-spaces',
-  'heroku-status'
+  'heroku-cli-status'
 ]
 
 const preamble = `---
