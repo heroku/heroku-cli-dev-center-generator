@@ -16,7 +16,7 @@
     "test": "jest && standard"
   },
 	"peerDependencies": {
-    "heroku-apps": "^2.4.0",
+    "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.38",
     "heroku-ci": "^1.8.1",
     "heroku-cli-addons": "^1.2.21",
@@ -29,14 +29,14 @@
     "heroku-pg": "^2.2.1",
     "heroku-pipelines": "^2.1.1",
     "heroku-ps-exec": "^1.0.5",
-    "heroku-run": "^3.4.11",
+    "heroku-run": "^3.4.12",
     "heroku-spaces": "^2.9.2",
     "heroku-cli-status": "4.x",
     "cli-engine": "3.3.5"
 	},
   "devDependencies": {
     "standard": "6.0.8",
-    "heroku-apps": "^2.4.0",
+    "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.38",
     "heroku-ci": "^1.8.1",
     "heroku-cli-addons": "^1.2.21",
@@ -49,7 +49,7 @@
     "heroku-pg": "^2.2.1",
     "heroku-pipelines": "^2.1.1",
     "heroku-ps-exec": "^1.0.5",
-    "heroku-run": "^3.4.11",
+    "heroku-run": "^3.4.12",
     "heroku-spaces": "^2.9.2",
     "heroku-cli-status": "4.x",
     "cli-engine": "3.3.5"
