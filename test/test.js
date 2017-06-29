@@ -72,19 +72,61 @@ sudo /sbin/telinit 0
 \`\`\``
     const result = Setsumeisho.termFormat(sample)
     expect(result).to.contain(expectedResult)
+    const anotherSample = `
+Example:
+
+    $ heroku releases
+    === example Releases
+    v1 Config add FOO_BAR email@example.com 2015/11/17 17:37:41 (~ 1h ago)
+    v2 Config add BAR_BAZ email@example.com 2015/11/17 17:37:41 (~ 1h ago)
+    v3 Config add BAZ_QUX email@example.com 2015/11/17 17:37:41 (~ 1h ago)`
+    const anotherResult = Setsumeisho.termFormat(anotherSample)
+    const anotherExpectation = `\`\`\`term
+$ heroku releases
+=== example Releases
+v1 Config add FOO_BAR email@example.com 2015/11/17 17:37:41 (~ 1h ago)
+v2 Config add BAR_BAZ email@example.com 2015/11/17 17:37:41 (~ 1h ago)
+v3 Config add BAZ_QUX email@example.com 2015/11/17 17:37:41 (~ 1h ago)
+\`\`\`
+`
+    expect(anotherResult).to.contain(anotherExpectation)
+    const athirdExample =  `Examples:
+
+    $ heroku run bash
+    Running bash on app.... up, run.1
+    ~ $
+    
+    $ heroku run -s hobby -- myscript.sh -a arg1 -s arg2
+    Running myscript.sh -a arg1 -s arg2 on app.... up, run.1
+`
+    const athirdExpectation = `#### Examples:
+
+\`\`\`term
+$ heroku run bash
+Running bash on app.... up, run.1
+~ $
+
+$ heroku run -s hobby -- myscript.sh -a arg1 -s arg2
+Running myscript.sh -a arg1 -s arg2 on app.... up, run.1
+\`\`\`
+`
+    const athirdResult = Setsumeisho.termFormat(athirdExample)
+    console.log(athirdResult)
+    console.log(athirdExpectation)
+    expect(athirdResult).to.contain(athirdExpectation)
   })
   it('pads Example/s headings with markdown h4', () => {
     const result = Setsumeisho.termFormat(sample)
     expect(result).to.match(/^#### Example/)
 
-    const anotherSample = `Example:
+    const anotherSample = `Examples:
 
     echo "hello world, world"
     sudo /sbin/telinit 0
 
 Example:
 
-		echo "goodbye, friend"
+    echo "goodbye, friend"
 
 `
     const anotherResult = Setsumeisho.termFormat(anotherSample)
