@@ -81,7 +81,7 @@ Setsumeisho.buildCommand = function (command) {
   }
 
   if (command.help) {
-    lines = lines.concat(Setsumeisho.termFormat(command.help))
+    lines.push(Setsumeisho.termFormat(command.help))
   }
   lines.push('')
   lines.push(`[(top)](#table-of-contents)\n`)
@@ -117,7 +117,7 @@ Setsumeisho.termFormat = function (lines) {
       splitLines[i] = splitLines[i].replace(/^[\s]+/, '')
     }
   }
-  return splitLines.join('\n').replace(/\s?Example/g, '#### Example').replace(/^Overview/m, '### Overview').split('\n')
+  return splitLines.join('\n').replace(/\s?Example/g, '#### Example').replace(/^Overview/m, '### Overview')
 }
 
 Setsumeisho.buildFlags = function (lines, command) {
