@@ -13,11 +13,48 @@
     "url": "https://github.com/dickeyxxx/heroku-plugin-readme-generator.git"
   },
   "scripts": {
-    "test": "mocha && standard"
+    "test": "jest && standard"
   },
+	"peerDependencies": {
+    "heroku-apps": "^2.4.2",
+    "heroku-certs": "^1.1.40",
+    "heroku-ci": "^1.8.2",
+    "heroku-cli-addons": "^1.2.22",
+    "heroku-cli-oauth": "^2.0.13",
+    "heroku-fork": "^4.1.24",
+    "heroku-git": "^2.5.18",
+    "heroku-local": "^5.1.17",
+    "heroku-orgs": "^1.6.3",
+    "heroku-pg": "^2.2.4",
+    "heroku-pipelines": "^2.1.2",
+    "heroku-ps-exec": "^1.0.6",
+    "heroku-run": "^3.4.12",
+    "heroku-spaces": "^2.9.4",
+    "heroku-cli-status": "4.x",
+    "cli-engine": "3.5.35"
+	},
   "devDependencies": {
-    "mocha": "2.4.5",
     "standard": "6.0.8",
-    "unexpected": "10.13.2"
+    "heroku-apps": "^2.4.2",
+    "heroku-certs": "^1.1.40",
+    "heroku-ci": "^1.8.2",
+    "heroku-cli-addons": "^1.2.22",
+    "heroku-cli-oauth": "^2.0.13",
+    "heroku-fork": "^4.1.24",
+    "heroku-git": "^2.5.18",
+    "heroku-local": "^5.1.17",
+    "heroku-orgs": "^1.6.3",
+    "heroku-pg": "^2.2.4",
+    "heroku-pipelines": "^2.1.2",
+    "heroku-ps-exec": "^1.0.6",
+    "heroku-run": "^3.4.12",
+    "heroku-spaces": "^2.9.4",
+    "heroku-cli-status": "4.x",
+    "cli-engine": "3.5.35"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "jest": "19.0.2",
+    "lodash": "4.17.4"
   }
 }
