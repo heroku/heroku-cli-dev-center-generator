@@ -90,7 +90,7 @@ v3 Config add BAZ_QUX email@example.com 2015/11/17 17:37:41 (~ 1h ago)
 \`\`\`
 `
     expect(anotherResult).to.contain(anotherExpectation)
-    const athirdExample =  `Examples:
+    const athirdExample = `Examples:
 
     $ heroku run bash
     Running bash on app.... up, run.1
@@ -255,4 +255,3 @@ describe('.cmdSort', () => {
     })
   })
 })
-
