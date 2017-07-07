@@ -7,11 +7,10 @@
     "heroku-plugin-readme-generator": "./run.js"
   },
   "dependencies": {
-    "chai": "^3.5.0",
-    "jest": "19.0.2",
-    "lodash": "4.17.4"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "cli-engine": "3.5.35",
     "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.40",
@@ -28,7 +27,8 @@
     "heroku-ps-exec": "^1.0.6",
     "heroku-run": "^3.4.12",
     "heroku-spaces": "^2.9.4",
-    "standard": "6.0.8"
+    "jest": "^20.0.4",
+    "standard": "10.0.2"
   },
   "files": [
     "run.js",
@@ -60,5 +60,8 @@
   },
   "scripts": {
     "test": "jest && standard"
+  },
+  "standard": {
+    "env": "jest"
   }
 }
