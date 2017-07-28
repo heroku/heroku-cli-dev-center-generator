@@ -7,7 +7,15 @@
     "heroku-plugin-readme-generator": "./run.js"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "remark-cli": "^4.0.0",
+    "remark-lint": "^6.0.0",
+    "remark-preset-lint-recommended": "^3.0.0"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -59,7 +67,9 @@
     "url": "https://github.com/dickeyxxx/heroku-plugin-readme-generator.git"
   },
   "scripts": {
-    "test": "jest && standard"
+    "test": "jest && standard",
+		"generate": "./run.js > generated_docs.md",
+    "lint": "remark remark generated_docs.md"
   },
   "standard": {
     "env": "jest"
