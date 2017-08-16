@@ -1,5 +1,5 @@
 {
-  "name": "heroku-plugin-readme-generator",
+  "name": "@heroku/heroku-plugin-readme-generator",
   "description": "Generates a README for a Heroku plugin",
   "version": "1.1.1",
   "author": "Jeff Dickey (@dickeyxxx)",
