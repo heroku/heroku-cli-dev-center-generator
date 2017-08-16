@@ -4,7 +4,7 @@
   "version": "1.1.1",
   "author": "Jeff Dickey (@dickeyxxx)",
   "bin": {
-    "heroku-plugin-readme-generator": "./run.js"
+    "heroku-cli-dev-center-generator": "./run.js"
   },
   "dependencies": {
     "lodash": "^4.17.4",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "cli-engine": "3.5.35",
+    "cli-engine": "3.5.58",
     "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.40",
     "heroku-ci": "^1.8.2",
@@ -45,7 +45,7 @@
   "license": "ISC",
   "main": "run.js",
   "peerDependencies": {
-    "cli-engine": "3.5.35",
+    "cli-engine": "3.5.58",
     "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.40",
     "heroku-ci": "^1.8.2",
@@ -64,7 +64,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dickeyxxx/heroku-plugin-readme-generator.git"
+    "url": "https://github.com/heroku/heroku-cli-dev-center-generator.git"
   },
   "scripts": {
     "test": "jest && standard",
