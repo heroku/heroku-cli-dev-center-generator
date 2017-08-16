@@ -1,7 +1,7 @@
 {
   "name": "@heroku/heroku-plugin-readme-generator",
   "description": "Generates a README for a Heroku plugin",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Jeff Dickey (@dickeyxxx)",
   "bin": {
     "heroku-cli-dev-center-generator": "./run.js"
