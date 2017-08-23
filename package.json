@@ -9,12 +9,19 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "remark-cli": "^4.0.0",
+    "remark-heroku-bash-dollar": "^1.0.2",
+    "remark-heroku-command-headings-inline-code": "^1.0.4",
+    "remark-heroku-example-command": "^1.0.5",
+    "remark-heroku-sample-code": "^1.0.3",
+    "remark-heroku-topic-overview": "^1.0.3",
     "remark-lint": "^6.0.0",
+    "remark-lint-are-links-valid": "^1.0.3",
     "remark-preset-lint-recommended": "^3.0.0"
   },
   "remarkConfig": {
     "plugins": [
-      "remark-preset-lint-recommended"
+      "remark-preset-lint-recommended",
+      "remark-heroku-example-command"
     ]
   },
   "devDependencies": {
@@ -68,7 +75,7 @@
   },
   "scripts": {
     "test": "jest && standard",
-		"generate": "./run.js > generated_docs.md",
+    "generate": "./run.js > generated_docs.md",
     "lint": "remark generated_docs.md"
   },
   "standard": {
