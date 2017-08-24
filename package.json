@@ -1,6 +1,6 @@
 {
   "name": "@heroku/heroku-cli-dev-center-generator",
-  "description": "Generates a README for a Heroku plugin",
+  "description": "Generates dev center documentation for CLI and plugins",
   "version": "1.1.3",
   "author": "Jeff Dickey (@dickeyxxx)",
   "bin": {
@@ -24,7 +24,7 @@
       "remark-preset-lint-recommended",
       "remark-heroku-example-command"
     ]
-	},
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "cli-engine": "3.5.58",
@@ -76,8 +76,7 @@
   },
   "scripts": {
     "test": "jest && standard",
-    "generate": "./run.js > generated_docs.md",
-    "lint-docs": "remark .",
+    "generate": "./run.js > generated_docs.md"
   },
   "standard": {
     "env": "jest"
