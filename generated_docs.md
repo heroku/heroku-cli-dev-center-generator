@@ -1764,7 +1764,7 @@ web=3:Standard-2X worker=1:Standard-1X
 |------|------|------|
 |`-d`|`--dyno`|specify the dyno to connect to|
 
-#### Example: 
+#### Example:
 
 ```term
 $ heroku dyno:socks
@@ -3472,7 +3472,7 @@ web=3:Standard-2X worker=1:Standard-1X
 |------|------|------|
 |`-d`|`--dyno`|specify the dyno to connect to|
 
-#### Example: 
+#### Example:
 
 ```term
 $ heroku ps:socks
