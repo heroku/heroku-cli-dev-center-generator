@@ -19,12 +19,6 @@
     "remark-lint-are-links-valid": "^1.0.3",
     "remark-preset-lint-recommended": "^3.0.0"
   },
-  "remarkConfig": {
-    "plugins": [
-      "remark-preset-lint-recommended",
-      "remark-heroku-example-command"
-    ]
-  },
   "devDependencies": {
     "chai": "^3.5.0",
     "cli-engine": "3.5.58",
@@ -70,13 +64,19 @@
     "heroku-run": "*",
     "heroku-spaces": "*"
   },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended",
+      "remark-heroku-example-command"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/heroku/heroku-cli-dev-center-generator.git"
   },
   "scripts": {
-    "test": "jest && standard",
-    "generate": "./run.js > generated_docs.md"
+    "generate": "./run.js > generated_docs.md",
+    "test": "jest && standard"
   },
   "standard": {
     "env": "jest"
