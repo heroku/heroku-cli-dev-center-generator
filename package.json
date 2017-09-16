@@ -8,10 +8,10 @@
     "cli-doc-lint": "remark /tmp/heroku-cli-commands.md"
   },
   "dependencies": {
+    "@heroku/remark-heroku-bash-dollar": "^1.0.4",
+    "@heroku/remark-heroku-command-headings-inline-code": "^1.0.5",
     "lodash": "^4.17.4",
     "remark-cli": "^4.0.0",
-    "remark-heroku-bash-dollar": "^1.0.2",
-    "remark-heroku-command-headings-inline-code": "^1.0.4",
     "remark-heroku-example-command": "^1.0.5",
     "remark-heroku-sample-code": "^1.0.3",
     "remark-heroku-topic-overview": "^1.0.3",
