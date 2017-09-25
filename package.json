@@ -4,8 +4,7 @@
   "version": "1.1.6",
   "author": "Jeff Dickey (@dickeyxxx)",
   "bin": {
-    "heroku-cli-dev-center-generator": "./run.js",
-    "cli-doc-lint": "remark /tmp/heroku-cli-commands.md"
+    "heroku-cli-dev-center-generator": "./run.js"
   },
   "dependencies": {
     "@heroku/remark-heroku-bash-dollar": "^1.0.4",
@@ -75,6 +74,7 @@
     "url": "https://github.com/heroku/heroku-cli-dev-center-generator.git"
   },
   "scripts": {
+    "cli-doc-lint": "remark /tmp/heroku-cli-commands.md",
     "generate": "./run.js > generated_docs.md",
     "test": "jest && standard"
   },
