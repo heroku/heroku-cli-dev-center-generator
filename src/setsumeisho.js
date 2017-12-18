@@ -75,12 +75,14 @@ Setsumeisho.buildCommand = function (command) {
 
   // port needs/wants apps & orgs for V5 commands
   if (command.needsApp || command.wantsApp) {
-    command.flags.app = Flags.app({required: !!command.needsApp})
-    command.flags.remote = Flags.remote()
+    if (!command.flags) command.flags = []
+    command.flags.push(Flags.app({required: !!command.needsApp}))
+    command.flags.push(Flags.remote())
   }
   if (command.needsOrg || command.wantsOrg) {
+    if (!command.flags) command.flags = []
     let opts = {required: !!command.needsOrg, hidden: false, description: 'organization to use'}
-    command.flags.org = Flags.org(opts)
+    command.flags.push(Flags.org(opts))
   }
 
   lines.push('')
