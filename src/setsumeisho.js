@@ -1,6 +1,7 @@
 // Setsumeisho literally means 'instructions' in Japanese
 
 const _ = require('lodash')
+const Flags = require('cli-engine-heroku').flags
 
 const packages = [
   'heroku-apps',
@@ -71,6 +72,16 @@ Setsumeisho.buildCommand = function (command) {
     lines.push('*' + desc + '*')
   }
   Setsumeisho.addAliases(lines, command)
+
+  // port needs/wants apps & orgs for V5 commands
+  if (command.needsApp || command.wantsApp) {
+    command.flags.app = Flags.app({required: !!command.needsApp})
+    command.flags.remote = Flags.remote()
+  }
+  if (command.needsOrg || command.wantsOrg) {
+    let opts = {required: !!command.needsOrg, hidden: false, description: 'organization to use'}
+    command.flags.org = Flags.org(opts)
+  }
 
   lines.push('')
   if (command.flags && command.flags.length) {
