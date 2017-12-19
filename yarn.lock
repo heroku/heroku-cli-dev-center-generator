@@ -938,7 +938,7 @@ co@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/co/-/co-3.1.0.tgz#4ea54ea5a08938153185e15210c68d9092bc1b78"
 
-co@4.6.0, co@4.x, co@^4.6.0:
+co@4.6.0, co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
@@ -2091,7 +2091,7 @@ heroku-cli-addons@1.2.21:
     lodash.values "4.3.0"
     printf "0.2.5"
 
-heroku-cli-addons@1.x, heroku-cli-addons@^1.2.22:
+heroku-cli-addons@^1.2.22:
   version "1.2.22"
   resolved "https://registry.yarnpkg.com/heroku-cli-addons/-/heroku-cli-addons-1.2.22.tgz#5517af407bbcc40e1850938f07f5e7a92d9bd6ac"
   dependencies:
@@ -2155,7 +2155,7 @@ heroku-cli-util@6.1.17:
     supports-color "^3.1.2"
     tunnel-agent "^0.4.3"
 
-heroku-cli-util@6.2.0, heroku-cli-util@6.x, heroku-cli-util@^6.0.15, heroku-cli-util@^6.1.17:
+heroku-cli-util@6.2.0, heroku-cli-util@^6.0.15, heroku-cli-util@^6.1.17:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/heroku-cli-util/-/heroku-cli-util-6.2.0.tgz#0385772272b2f95137b95bbc8848f5a2c607766a"
   dependencies:
@@ -2212,15 +2212,6 @@ heroku-exec-util@0.3.9:
     ssh2-streams "0.1.19"
     temp "0.8.3"
     uuid "3.0.1"
-
-heroku-fork@^4.1.24:
-  version "4.1.24"
-  resolved "https://registry.yarnpkg.com/heroku-fork/-/heroku-fork-4.1.24.tgz#50d97013ffaddd3d81207d8b2ff49862a481cf92"
-  dependencies:
-    co "4.x"
-    heroku-cli-addons "1.x"
-    heroku-cli-util "6.x"
-    lodash "4.x"
 
 heroku-git@^2.5.18:
   version "2.5.18"
@@ -3363,7 +3354,7 @@ lodash.zip@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.zip/-/lodash.zip-4.2.0.tgz#ec6662e4896408ed4ab6c542a3990b72cc080020"
 
-lodash@4.17.4, lodash@4.x, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.4, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
