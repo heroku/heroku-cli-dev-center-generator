@@ -1,7 +1,7 @@
 {
   "name": "@heroku/heroku-cli-dev-center-generator",
   "description": "Generates dev center documentation for CLI and plugins",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "author": "Jeff Dickey (@dickeyxxx)",
   "bin": {
     "heroku-cli-dev-center-generator": "./run.js"
@@ -22,8 +22,6 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "jest": "^20.0.4",
-    "standard": "10.0.2",
     "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.40",
     "heroku-ci": "^1.8.2",
@@ -37,7 +35,9 @@
     "heroku-pipelines": "^2.1.2",
     "heroku-ps-exec": "^1.0.6",
     "heroku-run": "^3.4.12",
-    "heroku-spaces": "^2.9.4"
+    "heroku-spaces": "^2.9.4",
+    "jest": "^20.0.4",
+    "standard": "10.0.2"
   },
   "peerDependencies": {
     "heroku-apps": "*",
