@@ -9,18 +9,8 @@
   "dependencies": {
     "@heroku/remark-heroku-bash-dollar": "^1.0.4",
     "@heroku/remark-heroku-command-headings-inline-code": "^1.0.5",
-    "lodash": "^4.17.4",
-    "remark-cli": "^4.0.0",
-    "remark-heroku-example-command": "^1.0.5",
-    "remark-heroku-sample-code": "^1.0.3",
-    "remark-heroku-topic-overview": "^1.0.3",
-    "remark-lint": "^6.0.0",
-    "remark-lint-are-links-valid": "^1.0.3",
-    "remark-preset-lint-recommended": "^3.0.0"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
     "cli-engine": "3.5.58",
+    "cli-engine-heroku": "^6.0.1",
     "heroku-apps": "^2.4.2",
     "heroku-certs": "^1.1.40",
     "heroku-ci": "^1.8.2",
@@ -36,6 +26,17 @@
     "heroku-ps-exec": "^1.0.6",
     "heroku-run": "^3.4.12",
     "heroku-spaces": "^2.9.4",
+    "lodash": "^4.17.4",
+    "remark-cli": "^4.0.0",
+    "remark-heroku-example-command": "^1.0.5",
+    "remark-heroku-sample-code": "^1.0.3",
+    "remark-heroku-topic-overview": "^1.0.3",
+    "remark-lint": "^6.0.0",
+    "remark-lint-are-links-valid": "^1.0.3",
+    "remark-preset-lint-recommended": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
     "jest": "^20.0.4",
     "standard": "10.0.2"
   },
@@ -45,24 +46,6 @@
   ],
   "license": "ISC",
   "main": "run.js",
-  "peerDependencies": {
-    "cli-engine": "*",
-    "heroku-apps": "*",
-    "heroku-certs": "*",
-    "heroku-ci": "*",
-    "heroku-cli-addons": "*",
-    "heroku-cli-oauth": "*",
-    "heroku-cli-status": "*",
-    "heroku-fork": "*",
-    "heroku-git": "*",
-    "heroku-local": "*",
-    "heroku-orgs": "*",
-    "heroku-pg": "*",
-    "heroku-pipelines": "*",
-    "heroku-ps-exec": "*",
-    "heroku-run": "*",
-    "heroku-spaces": "*"
-  },
   "remarkConfig": {
     "plugins": [
       "remark-preset-lint-recommended",
