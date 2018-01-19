@@ -1,6 +1,8 @@
 {
   "name": "@heroku-cli/dev-center-generator",
   "description": "Generates dev center documentation for CLI and plugins",
+  "homepage": "https://devcenter.heroku.com",
+  "repository": "heroku/heroku-cli-dev-center-generator",
   "version": "2.0.0",
   "author": "Jeff Dickey (@dickeyxxx)",
   "files": [
