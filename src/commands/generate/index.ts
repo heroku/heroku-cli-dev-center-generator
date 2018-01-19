@@ -15,6 +15,9 @@ export default class ConfigIndex extends Command {
       required: false,
     },
   ]
+  static flags = {
+    test: Flags.boolean({ required: false }),
+  }
 
   config: Config
   protected pluginName: string | undefined
@@ -33,8 +36,8 @@ export default class ConfigIndex extends Command {
     return this.pluginName
       ? `## ${this.pluginName}`
       : `---
-  title: Heroku CLI Commands
-  id: 4088
+  title: Heroku CLI Commands${this.flags.test ? ' Test' : ''}
+  id: ${this.flags.test ? '4406' : '4088'}
 
 
 
