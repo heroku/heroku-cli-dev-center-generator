@@ -1,84 +1,49 @@
 {
-  "name": "@heroku/heroku-cli-dev-center-generator",
-  "description": "Generates dev center documentation for CLI and plugins",
-  "version": "1.1.11",
-  "author": "Jeff Dickey (@dickeyxxx)",
-  "bin": {
-    "heroku-cli-dev-center-generator": "./run.js"
-  },
+  "name": "@heroku-cli/dev-center-generator",
+  "version": "0.0.1",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "heroku-plugin"
+  ],
+  "license": "MIT",
   "dependencies": {
-    "@heroku/remark-heroku-bash-dollar": "^1.0.4",
-    "@heroku/remark-heroku-command-headings-inline-code": "^1.0.5",
+    "@cli-engine/engine": "^6.1.32",
+    "@heroku-cli/command": "^7.0.12",
+    "cli-ux": "^3.0.0-alpha.3",
     "lodash": "^4.17.4",
-    "remark-cli": "^4.0.0",
-    "remark-heroku-example-command": "^1.0.5",
-    "remark-heroku-sample-code": "^1.0.3",
-    "remark-heroku-topic-overview": "^1.0.3",
-    "remark-lint": "^6.0.0",
-    "remark-lint-are-links-valid": "^1.0.3",
-    "remark-preset-lint-recommended": "^3.0.0"
+    "tslib": "^1.8.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "cli-engine": "3.5.58",
-    "cli-engine-heroku": "^6.0.1",
-    "heroku-apps": "^2.4.2",
-    "heroku-certs": "^1.1.40",
-    "heroku-ci": "^1.8.2",
-    "heroku-cli-addons": "^1.2.22",
-    "heroku-cli-oauth": "^2.0.13",
-    "heroku-cli-status": "4.x",
-    "heroku-git": "^2.5.18",
-    "heroku-local": "^5.1.17",
-    "heroku-orgs": "^1.6.3",
-    "heroku-pg": "^2.2.4",
-    "heroku-pipelines": "^2.1.2",
-    "heroku-ps-exec": "^1.0.6",
-    "heroku-run": "^3.4.12",
-    "heroku-spaces": "^2.9.4",
-    "jest": "^20.0.4",
-    "standard": "10.0.2"
+    "@cli-engine/util": "^1.2.12",
+    "@heroku-cli/tslint": "^1.1.2",
+    "@types/ansi-styles": "^2.0.30",
+    "@types/lodash": "^4.14.92",
+    "@types/luxon": "^0.2.2",
+    "@types/node": "^9.3.0",
+    "@types/supports-color": "^3.1.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.9.2",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
   },
-  "files": [
-    "run.js",
-    "src"
-  ],
-  "license": "ISC",
-  "main": "run.js",
-  "peerDependencies": {
-    "cli-engine": "*",
-    "cli-engine-heroku": "*",
-    "heroku-apps": "*",
-    "heroku-certs": "*",
-    "heroku-ci": "*",
-    "heroku-cli-addons": "*",
-    "heroku-cli-oauth": "*",
-    "heroku-cli-status": "*",
-    "heroku-git": "*",
-    "heroku-local": "*",
-    "heroku-orgs": "*",
-    "heroku-pg": "*",
-    "heroku-pipelines": "*",
-    "heroku-ps-exec": "*",
-    "heroku-run": "*",
-    "heroku-spaces": "*"
+  "cli-engine": {
+    "commands": "./lib/commands",
+    "topics": {
+      "devcenter": {
+        "description": "dev center markdown commands"
+      }
+    }
   },
-  "remarkConfig": {
-    "plugins": [
-      "remark-preset-lint-recommended",
-      "remark-heroku-example-command"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/heroku-cli-dev-center-generator.git"
+  "engines": {
+    "node": ">=6.0.0"
   },
   "scripts": {
-    "cli-doc-lint": "remark /tmp/heroku-cli-commands.md",
-    "generate": "./run.js > generated_docs.md",
-    "test": "jest && standard"
-  },
-  "standard": {
-    "env": "jest"
+    "posttest": "cli-engine-util",
+    "precommit": "cli-engine-util",
+    "prepare": "cli-engine-util",
+    "pretest": "tsc",
+    "test": "cli-engine-util lint"
   }
 }
