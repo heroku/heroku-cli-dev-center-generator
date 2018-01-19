@@ -80,7 +80,7 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
   private buildCommand(command: any) {
     if (command.hidden || (command.default && command.default.hidden)) return ''
     let lines = []
-    let cmd = `## \`heroku ${command.id}`
+    let cmd = `## ${command.id}\n\n### \`heroku ${command.id}`
     for (let arg of command.args || []) {
       cmd += ' ' + (arg.optional ? `[${arg.name.toUpperCase()}]` : arg.name.toUpperCase())
     }
@@ -110,7 +110,7 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
     }
 
     lines.push('')
-    if (command.flags) {
+    if (command.flags && command.flags.length) {
       let flags = command.flags
       flags = Object.keys(flags).map((name: string) => Object.assign({ name }, flags[name]))
       lines.push('#### Flags')
