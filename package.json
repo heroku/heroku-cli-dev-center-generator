@@ -13,7 +13,7 @@
   "dependencies": {
     "@cli-engine/engine": "^6.1.32",
     "@heroku-cli/command": "^7.0.12",
-    "cli-ux": "^3.0.0-alpha.3",
+    "cli-ux": "^2.0.21",
     "lodash": "^4.17.4",
     "tslib": "^1.8.1"
   },
