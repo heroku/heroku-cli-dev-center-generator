@@ -36,16 +36,16 @@ export default class ConfigIndex extends Command {
     return this.pluginName
       ? `## ${this.pluginName}`
       : `---
-  title: Heroku CLI Commands${this.flags.test ? ' Test' : ''}
-  id: ${this.flags.test ? '4406' : '4088'}
+title: Heroku CLI Commands${this.flags.test ? ' Test' : ''}
+id: ${this.flags.test ? '4406' : '4088'}
 
 
 
 
-  ## Introduction
-  These are the help texts for each of the core Heroku CLI commands. You can also see this text in your terminal with \`heroku help \`, \`heroku --help\`, or \`heroku -h\`.
+## Introduction
+These are the help texts for each of the core Heroku CLI commands. You can also see this text in your terminal with \`heroku help \`, \`heroku --help\`, or \`heroku -h\`.
 
-  `
+`
   }
 
   private async build() {
@@ -80,7 +80,7 @@ export default class ConfigIndex extends Command {
   private buildCommand(command: any) {
     if (command.hidden || (command.default && command.default.hidden)) return ''
     let lines = []
-    let cmd = `### \`heroku ${command.id}`
+    let cmd = `## \`heroku ${command.id}`
     for (let arg of command.args || []) {
       cmd += ' ' + (arg.optional ? `[${arg.name.toUpperCase()}]` : arg.name.toUpperCase())
     }
