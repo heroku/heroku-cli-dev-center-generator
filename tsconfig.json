@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "declaration": false,
+    "importHelpers": true,
+    "module": "commonjs",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "strict": true,
+    "strictFunctionTypes": false,
+    "target": "es2017"
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
