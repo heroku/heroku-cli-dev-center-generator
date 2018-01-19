@@ -9,12 +9,18 @@ import * as _ from 'lodash'
 export default class ConfigIndex extends Command {
   static description = 'generate dev center markdown doc'
   static hidden = true
-
-  topicLinks = {}
+  static args = [
+    {
+      name: 'plugin',
+      required: false,
+    },
+  ]
 
   config: Config
+  protected pluginName: string | undefined
 
   async run() {
+    this.pluginName = this.args.plugin
     cli.log(await this.build())
   }
 
@@ -24,7 +30,9 @@ export default class ConfigIndex extends Command {
   }
 
   private get preamble() {
-    return `---
+    return this.pluginName
+      ? `## ${this.pluginName}`
+      : `---
   title: Heroku CLI Commands
   id: 4088
 
@@ -51,6 +59,7 @@ export default class ConfigIndex extends Command {
 
     for (let Command of groupedCommands) {
       if (Command.hidden) continue
+      if (this.pluginName && Command.plugin.name !== this.args.plugin) continue
       let c = await Command.fetchCommand()
       lines.push(this.buildCommand(c))
     }
