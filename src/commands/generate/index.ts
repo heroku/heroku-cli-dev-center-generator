@@ -110,7 +110,7 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
     }
 
     lines.push('')
-    if (command.flags && command.flags.length) {
+    if (command.flags && Object.keys(command.flags).length) {
       let flags = command.flags
       flags = Object.keys(flags).map((name: string) => Object.assign({ name }, flags[name]))
       lines.push('#### Flags')
