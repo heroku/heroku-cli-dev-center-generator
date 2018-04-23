@@ -1,12 +1,9 @@
-import { CommandManager } from '@cli-engine/engine/lib/command'
-import { Config } from '@cli-engine/engine/lib/config'
-import { Plugins } from '@cli-engine/engine/lib/plugins'
-import { Plugin } from '@cli-engine/engine/lib/plugins/plugin'
-import { Command, flags as Flags } from '@heroku-cli/command'
+import {Command, flags as Flags} from '@heroku-cli/command'
+import * as Config from '@oclif/config'
 import cli from 'cli-ux'
 import * as _ from 'lodash'
 
-export default class ConfigIndex extends Command {
+export default class DevCenterGenerate extends Command {
   static description = 'generate dev center markdown doc'
   static hidden = true
   static args = [
@@ -16,20 +13,19 @@ export default class ConfigIndex extends Command {
     },
   ]
   static flags = {
-    test: Flags.boolean({ required: false }),
+    test: Flags.boolean({required: false}),
   }
 
-  config: Config
   protected pluginName: string | undefined
+  private flags: any
+  private args: any
 
   async run() {
+    const {flags, args} = this.parse(DevCenterGenerate)
+    this.flags = flags
+    this.args = args
     this.pluginName = this.args.plugin
     cli.log(await this.build())
-  }
-
-  protected async plugins(): Promise<Plugin[]> {
-    this.config = new Config(this.config)
-    return await new Plugins(this.config).list()
   }
 
   private get preamble() {
@@ -49,8 +45,7 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
   }
 
   private async build() {
-    const CM = new CommandManager(this.config)
-    const commands = await CM.commands()
+    const commands = await (this.config as any as Config.Config).commands
     const groupedCommands = _.sortBy(commands, 'id')
     let lines = []
 
@@ -62,9 +57,8 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
 
     for (let Command of groupedCommands) {
       if (Command.hidden) continue
-      if (this.pluginName && Command.plugin.name !== this.args.plugin) continue
-      let c = await Command.fetchCommand()
-      lines.push(this.buildCommand(c))
+      if (this.pluginName && Command.pluginName !== this.args.plugin) continue
+      lines.push(this.buildCommand(Command))
     }
 
     return lines.join('\n').trim()
@@ -77,20 +71,20 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
     return `|${char}|${name}|${desc}|`
   }
 
-  private buildCommand(command: any) {
-    if (command.hidden || (command.default && command.default.hidden)) return ''
+  private buildCommand(command: Config.Command) {
+    if (command.hidden) return ''
     let lines = []
     let cmd = `## ${command.id}\n\n### \`heroku ${command.id}`
     for (let arg of command.args || []) {
-      cmd += ' ' + (arg.optional ? `[${arg.name.toUpperCase()}]` : arg.name.toUpperCase())
+      cmd += ' ' + (!arg.required ? `[${arg.name.toUpperCase()}]` : arg.name.toUpperCase())
     }
     cmd += '`'
     lines.push(cmd)
     lines.push('')
-    if (!command.description && (!command.default || !command.default.description)) {
+    if (!command.description) {
       lines.push('MISSING DESCRIPTION')
     } else {
-      const desc = (command.description || command.default.description)
+      const desc = (command.description)
         .replace(/^[A-Z]{1,}/, (s: any) => s.toLowerCase())
         .replace(/\.$/, '')
       lines.push('*' + desc + '*')
@@ -98,32 +92,33 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
     this.addAliases(lines, command)
 
     // port needs/wants apps & orgs for V5 commands
-    if (command.needsApp || command.wantsApp) {
-      if (!command.flags) command.flags = []
-      command.flags.push(Flags.app({ required: !!command.needsApp }))
-      command.flags.push(Flags.remote())
+    const c: any = command
+    if (c.needsApp || c.wantsApp) {
+      if (!command.flags) c.flags = []
+      c.flags.push(Flags.app({required: !!c.needsApp}))
+      c.flags.push(Flags.remote())
     }
-    if (command.needsOrg || command.wantsOrg) {
-      if (!command.flags) command.flags = []
-      let opts = { required: !!command.needsOrg, hidden: false, description: 'organization to use' }
-      command.flags.push(Flags.org(opts))
+    if (c.needsOrg || c.wantsOrg) {
+      if (!command.flags) c.flags = []
+      let opts = {required: !!c.needsOrg, hidden: false, description: 'organization to use'}
+      c.flags.push(Flags.org(opts))
     }
 
     lines.push('')
     if (command.flags && Object.keys(command.flags).length) {
-      let flags = command.flags
-      flags = Object.keys(flags).map((name: string) => Object.assign({ name }, flags[name]))
+      let flags = c.flags
+      flags = Object.keys(flags).map((name: string) => ({name, ...flags[name]}))
       lines.push('#### Flags')
       lines.push('')
       lines = lines.concat(this.flagsTable(flags))
       lines.push('')
     }
 
-    if (command.help) {
-      lines.push(this.termFormat(command.help))
+    if (c.help) {
+      lines.push(this.termFormat(c.help))
     }
     lines.push('')
-    lines.push(`[(top)](#table-of-contents)\n`)
+    lines.push('[(top)](#table-of-contents)\n')
     lines.push('')
     return lines.join('\n')
   }
@@ -131,7 +126,7 @@ These are the help texts for each of the core Heroku CLI commands. You can also 
   private termFormat(lines: any) {
     let open = false
     let splitLines: string[] = lines.split('\n')
-    for (let i in splitLines) {
+    for (let i = 0; i < splitLines.length; i++) {
       if (!open) {
         if (splitLines[i].match(/^[\s]{4,4}/)) {
           open = true

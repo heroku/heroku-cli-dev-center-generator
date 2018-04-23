@@ -1,53 +1,70 @@
 {
   "name": "@heroku-cli/dev-center-generator",
   "description": "Generates dev center documentation for CLI and plugins",
-  "homepage": "https://devcenter.heroku.com",
-  "repository": "heroku/heroku-cli-dev-center-generator",
   "version": "2.0.0",
   "author": "Jeff Dickey (@dickeyxxx)",
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "heroku-plugin"
-  ],
-  "license": "MIT",
+  "bugs": "https://github.com/heroku/heroku-cli-dev-center-generator/issues",
   "dependencies": {
-    "@cli-engine/engine": "^6.1.32",
-    "@heroku-cli/command": "^7.0.12",
-    "cli-ux": "^2.0.21",
-    "lodash": "^4.17.4",
-    "tslib": "^1.8.1"
+    "@heroku-cli/command": "^8.0.5",
+    "@oclif/command": "1",
+    "@oclif/config": "1",
+    "cli-ux": "^3.4.1",
+    "lodash": "^4.17.5",
+    "tslib": "1"
   },
   "devDependencies": {
-    "@cli-engine/util": "^1.2.12",
     "@heroku-cli/tslint": "^1.1.2",
+    "@oclif/dev-cli": "1",
+    "@oclif/plugin-help": "1",
+    "@oclif/test": "1",
+    "@oclif/tslint": "1",
     "@types/ansi-styles": "^2.0.30",
-    "@types/lodash": "^4.14.92",
-    "@types/luxon": "^0.2.2",
-    "@types/node": "^9.3.0",
-    "@types/supports-color": "^3.1.0",
+    "@types/chai": "4",
+    "@types/lodash": "^4.14.107",
+    "@types/luxon": "^0.5.1",
+    "@types/mocha": "5",
+    "@types/node": "9",
+    "@types/supports-color": "^5.3.0",
+    "chai": "4",
+    "globby": "8",
     "husky": "^0.14.3",
-    "prettier": "^1.9.2",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.2"
-  },
-  "cli-engine": {
-    "commands": "./lib/commands",
-    "topics": {
-      "devcenter": {
-        "description": "dev center markdown commands"
-      }
-    }
+    "mocha": "5",
+    "nyc": "11",
+    "ts-node": "6.0.0",
+    "tslint": "5",
+    "typescript": "2.8"
   },
   "engines": {
     "node": ">=6.0.0"
   },
+  "files": [
+    "/.oclif.manifest.json",
+    "lib"
+  ],
+  "homepage": "https://devcenter.heroku.com",
+  "keywords": [
+    "heroku-plugin"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "topics": {
+      "devcenter": {
+        "description": "dev center markdown commands"
+      }
+    },
+    "commands": "./lib/commands",
+    "bin": "heroku",
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "heroku/heroku-cli-dev-center-generator",
   "scripts": {
-    "posttest": "cli-engine-util",
-    "precommit": "cli-engine-util",
-    "prepare": "cli-engine-util",
+    "postpack": "rm -f .oclif.manifest.json",
+    "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
+    "prepack": "rm -rf lib && tsc && oclif-dev manifest && oclif-dev readme",
     "pretest": "tsc",
-    "test": "cli-engine-util lint"
+    "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
   }
 }
