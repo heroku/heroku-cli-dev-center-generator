@@ -20,4 +20,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn --frozen-lockfile
-      - run: yarn test
+      - run: ./bin/run --help
+#      - run: yarn test   # Commented because there are no test files but this was also in CircleCI
