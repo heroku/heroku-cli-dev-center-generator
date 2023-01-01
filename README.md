@@ -10,3 +10,4 @@ $ heroku plugins:install @heroku-cli/dev-center-generator
 $ heroku devcenter:generate > ALL_COMMANDS.md
 $ heroku devcenter:generate heroku-ci > CI_COMMANDS.md
 ```
+test
