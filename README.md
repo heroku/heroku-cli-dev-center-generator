@@ -1,5 +1,4 @@
-@heroku-cli/dev-center-generator
-=============
+# Heroku CLI DevCenter Generator
 
 Generates a README of commands for the Heroku CLI or commands for just a single HEROKU CLI plugin.
 
