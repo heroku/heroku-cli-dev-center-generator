@@ -5,10 +5,10 @@
   "author": "Heroku",
   "bugs": "https://github.com/heroku/heroku-cli-dev-center-generator/issues",
   "dependencies": {
-    "@heroku-cli/command": "^8.0.5",
-    "@oclif/command": "1",
+    "@heroku-cli/command": "^9.0.0",
+    "@oclif/command": "1.8.0",
     "@oclif/config": "1",
-    "cli-ux": "^3.4.1",
+    "cli-ux": "^5.4.10",
     "lodash": "^4.17.5",
     "tslib": "1"
   },
