@@ -5,7 +5,7 @@
   "author": "Heroku",
   "bugs": "https://github.com/heroku/heroku-cli-dev-center-generator/issues",
   "dependencies": {
-    "@heroku-cli/command": "^8.0.5",
+    "@heroku-cli/command": "^10.0.0",
     "@oclif/command": "1",
     "@oclif/config": "1",
     "cli-ux": "^3.4.1",
